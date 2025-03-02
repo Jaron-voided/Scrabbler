@@ -1,9 +1,11 @@
+using Scrabbler.Interfaces;
+
 namespace Scrabbler;
 
-public class AllDictionaries
+public class AllDictionaries : IAllDictionaries
 {
-    public Dictionary<string, WordDictionary> WordDictionaries = 
-        new Dictionary<string, WordDictionary>();
+    public Dictionary<string, WordDictionary> WordDictionaries { get; set; } = new Dictionary<string, WordDictionary>();
+
 
     public void AddDictionary(WordDictionary dictionary)
     {

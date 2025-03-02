@@ -1,6 +1,8 @@
+using Scrabbler.Interfaces;
+
 namespace Scrabbler;
 
-public class WordDictionary
+public class WordDictionary : IWordDictionary
 {
     private string _label;
     
@@ -12,10 +14,10 @@ public class WordDictionary
             _label = value;
             Header = $"Words you can make with the letter {_label}";
         } 
-    }    
-    
-    public string Header = "Words you can make with the letter ${label}";
-    public Dictionary<string, int> Words = new Dictionary<string, int>();
+    }
+
+    public string Header { get; set; }
+    public Dictionary<string, int> Words { get; set; } = new Dictionary<string, int>();
     
     // Default constructor
     public WordDictionary()

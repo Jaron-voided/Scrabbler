@@ -1,13 +1,15 @@
+using Scrabbler.Interfaces;
+
 namespace Scrabbler;
 
-public static class WordSearch
+public class WordSearch : IWordSearch
 {
-    public static bool ContainsLetter(char letter, string word)
+    public bool ContainsLetter(char letter, string word)
     {
         return word.Contains(letter);
     }
     
-    public static bool ContainsLetters(List<char> letters, string word, bool hasWildcard)
+    public bool ContainsLetters(List<char> letters, string word, bool hasWildcard)
     {
         bool wildCardUsed = false;
         if (letters.Count < word.Length) return false;

@@ -1,8 +1,10 @@
+using Scrabbler.Interfaces;
+
 namespace Scrabbler;
 
-public class WordList
+public class WordList : IWordList
 {
-    public static Dictionary<string, int> GetWordList()
+    public Dictionary<string, int> GetWordList()
     {
         string filePath = "dictionary.json";
 
@@ -28,7 +30,7 @@ public class WordList
         }
     }
 
-    public static AllDictionaries GetPrunedWordList(List<char> singleBoardLetter)
+    public AllDictionaries GetPrunedWordList(List<char> singleBoardLetter)
     {
         try
         {
@@ -69,7 +71,7 @@ public class WordList
         }
     }
 
-    public static AllDictionaries GetPrunedWordList(List<string> multipleBoardLetters)
+    public AllDictionaries GetPrunedWordList(List<string> multipleBoardLetters)
     {
         try
         {
@@ -111,7 +113,7 @@ public class WordList
         }
     }
 
-    public static AllDictionaries GetPrunedWordList(List<char> singleBoardLetter,
+    public AllDictionaries GetPrunedWordList(List<char> singleBoardLetter,
         List<string> multipleBoardLetters)
     {
         try

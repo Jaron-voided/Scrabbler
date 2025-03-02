@@ -1,8 +1,12 @@
+using Scrabbler.Interfaces;
+
 namespace Scrabbler;
 
-public class WordScoring
+public class WordScoring : IWordScoring
 {
-    public static Dictionary<char, int> letterValues = new Dictionary<char, int>
+    public Dictionary<char, int> LetterValues => _letterValues;
+    
+    private readonly Dictionary<char, int> _letterValues = new Dictionary<char, int>
     {
         {'a', 1}, {'b', 3}, {'c', 3}, {'d', 2}, {'e', 1}, {'f', 4}, {'g', 2}, {'h', 4},
         {'i', 1}, {'j', 8}, {'k', 5}, {'l', 1}, {'m', 3}, {'n', 1}, {'o', 1}, {'p', 3},
@@ -10,18 +14,18 @@ public class WordScoring
         {'y', 4}, {'z', 10}
     };
 
-    public static int CalculateScore(string word)
+    public int CalculateScore(string word)
     {
         int score = 0;
         foreach (char c in word.ToLower())
         {
-            if (letterValues.ContainsKey(c)) score += letterValues[c];
+            if (_letterValues.ContainsKey(c)) score += _letterValues[c];
         }
 
         return score;
     }
 
-    public static WordDictionary AddScoresToWords(WordDictionary wordList)
+    public WordDictionary AddScoresToWords(WordDictionary wordList)
     {
         WordDictionary wordsWithScore = new WordDictionary();
         
@@ -33,7 +37,7 @@ public class WordScoring
         return wordsWithScore;
     }
 
-    public static Dictionary<string, int> SortByScore(Dictionary<string, int> wordList)
+    public Dictionary<string, int> SortByScore(Dictionary<string, int> wordList)
     {
         Dictionary<string, int> wordsSortedByScore = wordList
             .OrderByDescending(x => x.Value)
@@ -42,7 +46,7 @@ public class WordScoring
         return wordsSortedByScore;
     }
 
-    public static KeyValuePair<string, int>? GetHighestScore(WordDictionary wordList)
+    public KeyValuePair<string, int>? GetHighestScore(WordDictionary wordList)
     {
         WordDictionary playableWords = wordList;
 
